@@ -1,0 +1,12 @@
+[
+  {
+    "skill": "replace-with-a-real-skill-name",
+    "purpose": "Manual/model-based trigger evaluation plan; replace this example before using it.",
+    "should_trigger": [
+      "A realistic request that should activate this skill."
+    ],
+    "should_not_trigger": [
+      "A nearby request that should not activate this skill."
+    ]
+  }
+]
