@@ -66,9 +66,29 @@ Project/
 - `autoload/`: always autoload imports from here.
 - `import/`: scripts meant to be imported by other plugins, scripts that cannot be autoloaded, or scripts explicitly meant to be imported rather than autoloaded.
 
+### Named values
+
+Never hard-code a value, in one script or in many. Give every value that the code defines or depends on a name, and use the name everywhere. When a value already has a name, use the name and never type the value again. Where the name lives depends on who uses it:
+
+- One script uses it: a script-local `const` in the script-level constants section, near the top. Add a short comment when the value is not obvious.
+- More than one script uses it: a shared constant, see Shared constants.
+- A user may change it: a global variable with a default, see Global Variables.
+
+These are values, and all of them need a name:
+
+- File names, extensions, folder names, paths, URLs, program names, and their command line flags.
+- Names that the plugin defines: buffers, filetypes, highlight groups, text properties, autocommand groups, and signs.
+- Dictionary keys, status values, and mode or action names that scripts pass to each other.
+- Key notations, date formats, glyphs, and patterns that appear more than once.
+- Every number except 0, 1, and a list index: sizes, widths, padding, limits, timeouts, and thresholds.
+
+Vim's own vocabulary may stay inline when a script uses it once: an option value such as `'nofile'`, a highlight group that Vim defines such as `'Pmenu'`, or a file name modifier such as `':t:r'`. Name it when a script uses it twice or more.
+
+Text that the user reads is not a value. Follow the message rules of the project for it.
+
 ### Shared constants
 
-Never hard-code a value in more than one script. Put every constant that more than one script uses in `import/<plugin>/variables/constants.vim`, each exported, and import it with a plain import, which Vim finds in the `import/` folder of `runtimepath`. The file imports nothing, so it can never be part of an import cycle. A constant that only one script uses stays in that script and moves when it becomes shared. Derive display names from one `PLUGIN_NAME`. Give values stored on disk, such as a file extension or a data folder name, their own literal, so that renaming the plugin never breaks existing user data.
+Put every named value that more than one script uses in `import/<plugin>/variables/constants.vim`, each exported, and import it with a plain import, which Vim finds in the `import/` folder of `runtimepath`. The file imports nothing, so it can never be part of an import cycle. A constant that only one script uses stays in that script and moves when it becomes shared. Derive display names from one `PLUGIN_NAME`. Give values stored on disk, such as a file extension or a data folder name, their own literal, so that renaming the plugin never breaks existing user data.
 
 ## Naming
 
@@ -111,6 +131,7 @@ Keep an alias consistent for the same script across all imports, and never use o
 - Define global variables in the `plugin/` script. If unavailable to edit, define at the top of the current script for later relocation.
 - Assign any global variable used in a script to a terse script-local variable near the top, after imports: `var foo = g:some_option`.
 - Prefer short names when reducing globals: `var foo = g:my_foo`.
+- Never read a global variable inside a function. Read the script-local copy, so that a setting has one default, in the `plugin/` script, and one copy in each script that uses it.
 
 ## Formatting
 
