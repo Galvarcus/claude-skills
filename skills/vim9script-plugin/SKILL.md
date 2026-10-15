@@ -57,7 +57,10 @@ Syntax, ftdetect, ftplugin, and indent files are also Vim9 script, but they run 
 ```text
 Project/
   autoload/
+    <plugin>.vim
+    <plugin>/
   plugin/
+    <plugin>.vim
   import/
   doc/
   README.md
@@ -65,6 +68,17 @@ Project/
 
 - `autoload/`: always autoload imports from here.
 - `import/`: scripts meant to be imported by other plugins, scripts that cannot be autoloaded, or scripts explicitly meant to be imported rather than autoloaded.
+
+### The plugin file
+
+Vim sources `plugin/<plugin>.vim` at every start, whether or not the user opens the plugin that day, so keep it to what must exist before the first use:
+
+- The global settings, each with its default: the single source for them.
+- The user commands, each a one-line call into an autoload script.
+- The mappings, with a `<Plug>` name for each and default keys that a `g:<plugin>_no_mappings` setting turns off. Map a default key only when the user has not mapped its `<Plug>` name: `if !hasmapto('<Plug>(MyAction)', 'n')`.
+- The autocommands, each a call into an autoload script.
+
+Put every function that these need in `autoload/<plugin>.vim`, with its imports and the logger, never in the plugin file. Import it, and every other script, with `import autoload`, which only records the name. While it loads, the plugin file calls nothing in an autoload script, not even to decide whether to define a mapping, and names no autoload class as a type: each would load that script, and everything that it imports, at every start. A check that needs the plugin's scripts belongs in the action that the mapping or command runs, which can say what is missing.
 
 ### Named values
 
