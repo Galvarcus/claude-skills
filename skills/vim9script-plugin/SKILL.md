@@ -78,11 +78,11 @@ These are values, and all of them need a name:
 
 - File names, extensions, folder names, paths, URLs, program names, and their command line flags.
 - Names that the plugin defines: buffers, filetypes, highlight groups, text properties, autocommand groups, and signs.
-- Dictionary keys, status values, and mode or action names that scripts pass to each other.
+- Status values and mode or action names that scripts pass to each other, and a dictionary key that is written as a string. A key written bare, as in `{title: x}` or `x.title`, is an identifier and needs no name. Pass a record between scripts as a class when you can.
 - Key notations, date formats, glyphs, and patterns that appear more than once.
 - Every number except 0, 1, and a list index: sizes, widths, padding, limits, timeouts, and thresholds.
 
-Vim's own vocabulary may stay inline when a script uses it once: an option value such as `'nofile'`, a highlight group that Vim defines such as `'Pmenu'`, or a file name modifier such as `':t:r'`. Name it when a script uses it twice or more.
+Vim's own vocabulary may stay inline when a script uses it once: an option value such as `'nofile'`, a highlight group that Vim defines such as `'Pmenu'`, or a file name modifier such as `':t:r'`. Name it when a script uses it twice or more. Separators such as `', '`, line breaks, and the rows of a data table may stay inline as well.
 
 Text that the user reads is not a value. Follow the message rules of the project for it.
 
@@ -104,6 +104,18 @@ Use English for identifiers. Never use kebab-case.
 Ephemeral variables (loop vars, etc.): single lowercase letter, preferring the first letter of what it references (`for f in foo`); default to `i` when no letter fits.
 
 Never separate numbers from letters: `special_var1`, not `special_var_1`.
+
+### Short names
+
+Keep every name as short as it can be while its meaning stays easy to tell. Use the common abbreviations: `str` for string, `num` for number, `amt` for amount, `cmd` for command, `msg` for message, `buf` for buffer, `win` for window, `cur` for current, `prev` for previous, `idx` for index, `pos` for position, `len` for length, `doc` for document, `dir` for directory, `ref` for reference, `pat` for pattern, `fmt` for format, `sel` for selected, and `tmp` for temporary. Leave out a prefix that the item already makes plain: a text constant needs no `TEXT_`, and a script needs no word for its own name in its variables, so a copy of `g:my_quill_width` in `quill.vim` is `width`. When a short name would clash with another name in the same script, or with a Vim function such as `col()`, keep a longer one.
+
+Three kinds of name keep their full form, because something outside the code depends on them:
+
+- A class field or a dictionary key that is saved to disk, or read back as data, such as a key of a JSON file.
+- A name that the user sees or sets: a command, a setting, a highlight group, a filetype, or a mapping.
+- A name that another plugin defines, such as a method of a shared dependency.
+
+Test suites are exempt: a test name describes the behavior that it checks, in full.
 
 ## Imports and Aliases
 
@@ -131,7 +143,7 @@ Keep an alias consistent for the same script across all imports, and never use o
 - Define global variables in the `plugin/` script. If unavailable to edit, define at the top of the current script for later relocation.
 - Assign any global variable used in a script to a terse script-local variable near the top, after imports: `var foo = g:some_option`.
 - Prefer short names when reducing globals: `var foo = g:my_foo`.
-- Never read a global variable inside a function. Read the script-local copy, so that a setting has one default, in the `plugin/` script, and one copy in each script that uses it.
+- Never read a global variable inside a function. Read the script-local copy, so that a setting has one default, in the `plugin/` script, and one copy in each script that uses it. The one exception is a setting that the user may change while Vim runs, such as a toggle: read it where it is used, in one place in the script.
 
 ## Formatting
 
