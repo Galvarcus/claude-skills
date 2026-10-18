@@ -1,12 +1,78 @@
 [
   {
-    "skill": "replace-with-a-real-skill-name",
-    "purpose": "Manual/model-based trigger evaluation plan; replace this example before using it.",
+    "skill": "code-comments",
+    "purpose": "Trigger the comment rules whenever a task writes, changes, or reviews comments, in any language or file type, and not for questions or prose about comments.",
     "should_trigger": [
-      "A realistic request that should activate this skill."
+      "Add a comment above this retry loop explaining why it sleeps before the third attempt.",
+      "Review the comments in this diff to our GitHub Actions workflow.",
+      "Our CSS has comments like /* ---- header ---- */. Fix them to match our style.",
+      "Clean up the comments in tools/latex/book.tex.",
+      "Add a REFERENCE link to issue 42 above the workaround in compile.vim.",
+      "Fix the comment blocks in autoload/bartleby/quill.vim.",
+      "Write a Lua filter for Pandoc that makes table headers bold.",
+      "Write a small Bash script that backs up my dotfiles to a dated folder."
     ],
     "should_not_trigger": [
-      "A nearby request that should not activate this skill."
+      "Explain what a Python docstring is and when to use one.",
+      "Write a blog post about best practices for code comments.",
+      "Draft a commit message for these changes.",
+      "Summarize this README in three sentences.",
+      "Translate this paragraph into French."
+    ]
+  },
+  {
+    "skill": "github-markdown-style",
+    "purpose": "Trigger the editorial rules for GitHub Markdown documentation and templates, and not for other prose, code, or questions about Markdown.",
+    "should_trigger": [
+      "Edit the Installation section of the README to be more concise.",
+      "Write a CONTRIBUTING.md for the GhostCode repository.",
+      "Proofread this pull-request template.",
+      "Review the CHANGELOG entry for version 2.1 for tone.",
+      "Turn these notes into a docs page about the compile settings.",
+      "Rewrite the Markdown bug report template so it asks clearer questions."
+    ],
+    "should_not_trigger": [
+      "Write a short story about a lighthouse keeper.",
+      "Draft an email thanking a contributor for their pull request.",
+      "Explain the difference between GitHub-flavored Markdown and CommonMark.",
+      "Fix the broken link check in tools/validate.py.",
+      "Convert this table of data to CSV."
+    ]
+  },
+  {
+    "skill": "token-efficient-execution",
+    "purpose": "Trigger lean execution for non-trivial, multi-step, or tool-assisted work and when the user asks for low-cost work, and not for trivial one-step requests.",
+    "should_trigger": [
+      "Find and fix the failing test in this repository.",
+      "Refactor compile.vim into smaller scripts and verify that the suite still passes.",
+      "Research how Pandoc handles table captions in LaTeX and summarize what you find.",
+      "Keep it cheap: rename the Logger alias across all scripts.",
+      "With as few tool calls as you can, list the files that import table.vim."
+    ],
+    "should_not_trigger": [
+      "What is 17 times 23?",
+      "Say hello.",
+      "Translate good morning into Spanish.",
+      "What is the capital of Peru?"
+    ]
+  },
+  {
+    "skill": "vim9script-plugin",
+    "purpose": "Trigger the Vim9script standards for Vim plugin and script work, alongside code-comments for a comment edit, and not for Neovim, other languages, or questions about using Vim.",
+    "should_trigger": [
+      "Add a :BartlebyWordCount command to the plugin.",
+      "Fix the E1012 type error in autoload/bartleby/table.vim.",
+      "Convert this legacy Vim script function to Vim9script.",
+      "Review ftplugin/markdown.vim in my plugin for problems.",
+      "Fix the comment blocks in autoload/bartleby/quill.vim.",
+      "Write the doc/bartleby.txt help for the new table commands.",
+      "Add a test for the link rename update to tests/test_links.vim."
+    ],
+    "should_not_trigger": [
+      "Write a Neovim Lua plugin that shows a floating clock.",
+      "Write a Python script that reads the history in a viminfo file.",
+      "How do I exit Vim and save my changes?",
+      "Fix the typos in the README of the Bartleby repository."
     ]
   }
 ]
