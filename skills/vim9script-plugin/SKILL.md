@@ -1,6 +1,6 @@
 ---
 name: "vim9script-plugin"
-description: Create, edit, review, or maintain Vim plugins and Vim scripts using Vim9script per this project's standards. Use whenever writing or modifying a .vim file, a Vim plugin, Vim9 classes, autoload/import scripts, Vim commands, or Vim plugin documentation — even for small edits or single functions. Covers naming, formatting, comments, imports, logging, script section ordering, and directory structure.
+description: Create, edit, review, or maintain Vim plugins and Vim scripts using Vim9script per this project's standards. Use whenever writing or modifying a .vim file, a Vim plugin, Vim9 classes, autoload/import scripts, Vim commands, or Vim plugin documentation — even for small edits or single functions. Covers naming, formatting, the Vim9 specifics of comments, imports, logging, script section ordering, and directory structure.
 ---
 
 # Vim9script Plugin Development
@@ -168,82 +168,20 @@ Keep an alias consistent for the same script across all imports, and never use o
 
 ## Comments
 
-Good code should explain itself. Before adding a comment, ask whether the code can be changed so the comment is unnecessary. When a comment is necessary, state **why**, not merely **what** the code does.
+Follow the code-comments skill for every comment: its principles, placement, punctuation, blocks, identifiers, and issue references. Vim9script adds:
 
-* Omit needless comments. Prefer clear code over comments that explain unclear code.
-* Use comments to explain **rationale, intent, constraints, or non-obvious consequences**—not mechanics that the code already makes clear.
-* Keep comments **brief, specific, and concrete**. Omit vague or unnecessary words.
-* Use direct, declarative language. Prefer strong verbs and specific nouns.
-* Avoid promotional, conversational, or rhetorical language.
-* Do not repeat information already expressed by the code, function name, variable name, or surrounding documentation.
-* No inline comments: place explanatory comments on the line directly above the code, with no blank line between the comment and the code.
-* Use one space after the leading `#`.
-* Do not use comments to compensate for poor code. Refactor the code when that produces a clearer explanation than a comment.
-* Keep comments current. A comment that no longer describes the code is worse than no comment.
-* Exception: the top-of-script comment block gets one blank line before and after it.
-* Avoid the use of quotation marks, brackets, parentheses, dashes, em dash, and en dash unless required as part of a code example. Name options and variables without quotes: guioptions, g:plugin_width.
-
-### Comment Blocks
-
-Comment blocks should be concise, orderly, and easy to scan.
-
-* A block's opening and closing delimiter lines contain only `#`, never `-` or `=`.
-* Keep comment lines to **78 columns or fewer**, counted from column 1. An indented comment has 78 minus its indent for text. A delimiter line ends at column 78.
-* A block that documents a class, method, function, or section begins with an identifier followed by `:` (for example, `# CLASS:` or `# TODO:`). A comment inside a function body explains the next line of code and takes no identifier.
-* Use specific, concrete language. Avoid vague phrases such as "handles things," "does some processing," or "for convenience."
-* Omit needless introductory phrases such as "This function is used to" or "This code will."
-* Prefer imperative or direct descriptions where appropriate:
-
-  * `# METHOD: Parse the configuration file.`
-  * `# CLASS: Represents a Vim plugin configuration.`
-* Keep related information together and use parallel construction when listing multiple items.
-* Do not add a comment block merely to provide structure that the code already makes obvious.
-
-Identifiers:
-
-`CLASS:`, `INTERFACE:`, `METHOD:` (a def inside a class), `FUNCTION:` (a def outside a class), `SECTION:` (the header of a delimited section), `FIXME:` (should never be needed), `TODO:`, `OPTIMIZE:` (should never be needed), `HACK:` (should never be needed), `REVIEW:`, `REFERENCE:` (a link to a GitHub issue, see Issue References). The user's syntax highlighting matches these. Add a new identifier only for a distinct, recurring purpose.
-
-### Issue References
-
-Link a GitHub issue from a comment only when the issue is needed to understand why the code is as it is: the change is obscure, breaks normal coding practice, or is a workaround. Do not link an issue for every change it caused.
-
-* Put the link on its own line, directly below the comment it supports, after `REFERENCE:`.
-* One link per line, the full address of the issue.
-
-```vim
-# The cursor is a highlighted character, so at the end of its line it
-# needs a space to show on, as text fields have their padding.
-# REFERENCE: https://github.com/Galvarcus/bartleby/issues/3
-```
-
-### Top-of-Script Comment Block
-
-The top-of-script block contains:
-
-* `# Plugin_Name:` followed by the plugin name.
-* A terse, concrete description of the plugin's purpose.
-* License information; default: GNU GPL 3.0.
-
-The description should state what the plugin does, not praise it or describe it with unnecessary adjectives.
-
-Prefer:
+* The comment marker is `#`, and a delimiter line is `#` repeated to column 78.
+* `METHOD:` marks a def inside a class, and `FUNCTION:` a def outside one.
+* The top-of-script comment block follows the Required Script Header, with one blank line before and after it. It contains:
+  * `# Plugin_Name:` followed by the plugin name.
+  * A terse, concrete description of the script's purpose.
+  * `# License:` followed by the license. Default: GNU GPL 3.0.
 
 ```vim
 # Plugin_Name: example
 # Provides commands for managing plugin configuration.
 # License: GNU GPL 3.0
 ```
-
-over:
-
-```vim
-# Plugin_Name: example
-# This is a powerful and easy-to-use plugin that provides
-# useful functionality for managing plugin configuration.
-# License: GNU GPL 3.0
-```
-
-
 
 ## Strings
 
