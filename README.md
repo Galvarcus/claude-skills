@@ -8,7 +8,7 @@ These skills are my own and contain my personal preferences. Feel free to use, e
 * code-comments - Generic rules for code comments. Claude likes to be wordy.
 * github-markdown-style - Style guide skill for creating GH markdown files, such as README.md. Based on _The Elements of Style_ by Strunk & White.
 * vim9script-plugin - very personal preferences for vim9script plugins.
-* token-efficient-execution - My most prized skill. I have seen a 20-50% reduction in token usage with this skill. Tested in Opus 5.5 and Sonnet 5.5. Mileage may vary.
+* token-efficient-execution - My most prized skill. I have seen a 20-50% reduction in token usage with this skill. Tested in Opus 5.5 and Sonnet 5.5 with Pro sub. Mileage may vary.
 
 The remainder of this document details project usage.
 
