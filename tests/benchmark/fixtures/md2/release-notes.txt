@@ -1,0 +1,7 @@
+v2.1.0 release notes — draft, ships 2026-10-20
+- blazing fast new renderer (3x faster on our benchmark of 500-page docs)
+- added --toc flag; generates a table of contents
+- fixed: crash when a heading contains emoji (#88)
+- fixed: wrong page numbers after a page break; also footnotes now render in the PDF
+- removed python 3.9 support (python 3.10+ now required)
+- deprecated --legacy-pdf — will be removed in 3.0

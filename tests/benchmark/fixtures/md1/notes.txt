@@ -1,0 +1,8 @@
+quillmark contributing notes (turn into CONTRIBUTING.md)
+- python 3.10+, use a venv
+- install dev deps: pip install -e ".[dev]"
+- run tests with pytest, lint with ruff check .
+- branch off main, one feature per PR
+- PR needs passing CI + 1 review
+- bugs go in github issues, use the bug template
+- security issues: email security@quillmark.dev, not public issues

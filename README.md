@@ -66,6 +66,7 @@ The validator intentionally supports a conservative subset of YAML frontmatter: 
 - `test.py` runs the validator and Python unit tests.
 - `tests/test_skills.py` includes regression checks for discovery metadata, expected fixtures, and packaging output.
 - `tests/cases.json` is a lightweight behavior-evaluation plan. It records positive and negative trigger prompts for later manual or model-based evaluation; the included harness does not claim to execute Claude or score model behavior.
+- `tests/benchmark/` holds task evals that compare each skill with a baseline that runs without it. Claude Code runs the evals as subagents, and the graders score the results. See [the benchmark README](tests/benchmark/README.md).
 
 Run all checks locally:
 

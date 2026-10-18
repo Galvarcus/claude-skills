@@ -2,3 +2,9 @@ dist/
 __pycache__/
 *.py[cod]
 .claude
+
+# Benchmark run workspaces and generated fixtures; see tests/benchmark.
+tests/benchmark/ws/
+tests/benchmark/fixtures/ledger/
+tests/benchmark/fixtures/te0/build/
+tests/benchmark/fixtures/te2/build.log
