@@ -8,3 +8,4 @@ tests/benchmark/ws/
 tests/benchmark/fixtures/ledger/
 tests/benchmark/fixtures/te0/build/
 tests/benchmark/fixtures/te2/build.log
+tests/benchmark/fixtures/waypoint-*/

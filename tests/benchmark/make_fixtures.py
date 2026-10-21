@@ -43,6 +43,7 @@ def main():
     build_log()
     (FIX / "vm0").mkdir(exist_ok=True)
     subprocess.run([sys.executable, str(HERE / "make_ledger.py"), str(FIX / "ledger")], check=True)
+    subprocess.run([sys.executable, str(HERE / "waypoint" / "make_waypoint.py"), str(FIX)], check=True)
     print(f"fixtures ready in {FIX}")
 
 

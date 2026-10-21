@@ -15,6 +15,8 @@ The runs themselves need Claude Code with the skill-creator plugin, because each
 | `seed.py` | Copies fixtures into a fresh run workspace under `ws/` |
 | `grade.py` | Grades every eval except the two ledger evals |
 | `grade_ledger.py` | Grades the ledger evals, `fix-issue-214` and `rename-date-format` |
+| `grade_waypoint.py` | Grades the seven Waypoint stages. `--validate` checks the graders against each stage's input and reference solution. |
+| `waypoint/` | The Waypoint plugin benchmark: brief, reference sources, planted bugs and review issues, hidden Vim tests, and solutions. See [the Waypoint plan](waypoint-plan.md). |
 
 `ws/` and the generated fixtures are in `.gitignore`.
 
@@ -28,7 +30,7 @@ The runs themselves need Claude Code with the skill-creator plugin, because each
    python3 seed.py iteration-1 --skill token-efficient-execution --runs 3
    ```
 
-2. Ask Claude Code to run each seeded `outputs/` directory as a subagent task with the eval's prompt. A `with_skill` run reads the skill's `SKILL.md` first. A `without_skill` run must not use the Skill tool or read any `SKILL.md`. Each run writes its final reply to `response.md`.
+2. Ask Claude Code to run each seeded run as a subagent, with the run's `prompt.txt` as the prompt. The prompt names the skills the run may read and forbids the rest. Each run writes its final reply to `response.md`.
 
 3. For each finished run, save the subagent's duration as `timing.json` in its `run-<n>/` directory. For transcript checks, also save the path of the subagent's JSONL transcript as `transcript_path.txt` in the same directory.
 
@@ -37,6 +39,7 @@ The runs themselves need Claude Code with the skill-creator plugin, because each
    ```sh
    python3 grade.py iteration-1
    python3 grade_ledger.py iteration-1
+   python3 grade_waypoint.py iteration-1
    ```
 
 5. Aggregate and review with skill-creator's scripts, from its `skills/skill-creator` directory:

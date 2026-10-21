@@ -1,0 +1,87 @@
+*waypoint.txt*  Named cursor positions for Vim 9.2
+
+License: GNU GPL 3.0
+
+==============================================================================
+CONTENTS                                                   *waypoint-contents*
+
+  1. Commands .......................................... |waypoint-commands|
+  2. Mappings .......................................... |waypoint-mappings|
+  3. Settings .......................................... |waypoint-settings|
+  4. Storage ........................................... |waypoint-storage|
+  5. Line tracking ..................................... |waypoint-tracking|
+
+==============================================================================
+1. Commands                                                *waypoint-commands*
+
+:WaypointAdd {name}                                             *:WaypointAdd*
+    Save the cursor position in the current file as {name}. A waypoint
+    with the same name is replaced.
+
+:WaypointJump {name}                                           *:WaypointJump*
+    Open the file of waypoint {name} and move the cursor to it.
+
+:WaypointList                                                  *:WaypointList*
+    Show the saved waypoints in a popup menu, sorted by name. Press <CR>
+    on one to jump to it.
+
+:WaypointDelete {name}                                       *:WaypointDelete*
+    Delete waypoint {name}.
+
+:WaypointRename {old} {new}                                  *:WaypointRename*
+    Rename waypoint {old} to {new}. Fails when {old} does not exist or
+    {new} already does.
+
+:WaypointJump, :WaypointDelete, and :WaypointRename complete waypoint
+names.
+
+==============================================================================
+2. Mappings                                                *waypoint-mappings*
+
+<Plug>(WaypointAdd)                                      *<Plug>(WaypointAdd)*
+    Ask for a name and save the cursor position under it.
+    Default key: <Leader>wa
+
+<Plug>(WaypointList)                                    *<Plug>(WaypointList)*
+    Same as |:WaypointList|.
+    Default key: <Leader>wl
+
+==============================================================================
+3. Settings                                                *waypoint-settings*
+
+*g:waypoint_dir*
+    Folder of the store file. Default: "~/.vim/waypoint"
+
+*g:waypoint_popup_width*
+    Width of the |:WaypointList| popup. Default: 60
+
+*g:waypoint_no_mappings*
+    Set to true to skip the default keys. Default: false
+
+*g:waypoint_scope*
+    "global" keeps one set of waypoints for all files. "project" keeps
+    one set per project, so commands see only the waypoints of the
+    current file's project. A file outside every project uses the global
+    set. Default: "global"
+
+*g:waypoint_root_markers*
+    Names of files or folders that mark a project root. The root is the
+    nearest folder above the current file that holds one. Default: [".git"]
+
+==============================================================================
+4. Storage                                                  *waypoint-storage*
+
+Waypoints are saved in waypoints.json in |g:waypoint_dir|, as a list of
+records with the keys name, file, line, col, and created. With
+|g:waypoint_scope| set to "project", each project has its own store file
+under projects/ in |g:waypoint_dir|.
+
+==============================================================================
+5. Line tracking                                           *waypoint-tracking*
+
+A waypoint stays on its line while you insert or delete lines above it.
+|:WaypointJump| goes to the line where the waypoint is now, and writing
+the file saves the new line. Waypoint marks each one with a text property
+of type "waypoint" in every loaded buffer.
+
+ vim:tw=78:ts=8:ft=help:norl:
