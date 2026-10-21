@@ -2,15 +2,35 @@
 
 A small, dependency-free toolkit for a repository whose canonical skills live in `skills/<skill-name>/SKILL.md`.
 
-## Included Skills
+## Included skills
 
-These skills are my own and contain my personal preferences. Feel free to use, edit, or delete them from your copy.
-* code-comments - Generic rules for code comments. Claude likes to be wordy.
-* github-markdown-style - Style guide skill for creating GH markdown files, such as README.md. Based on _The Elements of Style_ by Strunk & White.
-* vim9script-plugin - very personal preferences for vim9script plugins.
-* token-efficient-execution - A work in progress.
+These skills are my own and hold my personal preferences. Use, edit, or delete them in your copy.
 
-The remainder of this document details project usage.
+| Skill | Purpose |
+| --- | --- |
+| [`code-comments`](skills/code-comments/SKILL.md) | Rules for code comments in any language. Keeps comments short, because Claude tends to write long ones. |
+| [`github-markdown-style`](skills/github-markdown-style/SKILL.md) | Style guide for GitHub Markdown files such as README.md, based on _The Elements of Style_ by Strunk and White. |
+| [`token-efficient-execution`](skills/token-efficient-execution/SKILL.md) | Rules for multi-step work that use the fewest tokens, tool calls, and words that still give a correct, verified result. |
+| [`vim9script-plugin`](skills/vim9script-plugin/SKILL.md) | My conventions for Vim9script plugins: naming, layout, comments, logging, and tests. |
+
+### Token savings
+
+A benchmark compared runs with and without `token-efficient-execution` on seven tasks for a Vim9script plugin, with three runs of each. Both configurations loaded the other three skills. Token counts are approximate means per run.
+
+| Task | Tokens with | Tokens without | Saved |
+| --- | --- | --- | --- |
+| Design plan | 360k | 680k | 47% |
+| Fix three bugs | 460k | 560k | 18% |
+| Add a rename command | 710k | 1,020k | 30% |
+| Add project scope | 730k | 1,010k | 28% |
+| Add line tracking | 1,130k | 1,600k | 29% |
+| Code review | 850k | 1,090k | 22% |
+| Final analysis | 720k | 990k | 28% |
+| All tasks | 14.9M total | 20.9M total | 29% |
+
+The checks passed at 96.7% with the skill and 94.8% without it. See [the Waypoint benchmark plan](tests/benchmark/waypoint-plan.md) for the method and full results.
+
+The rest of this document covers the repository toolkit.
 
 ## Repository layout
 
