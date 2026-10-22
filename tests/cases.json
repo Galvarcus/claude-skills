@@ -74,5 +74,22 @@
       "How do I exit Vim and save my changes?",
       "Fix the typos in the README of the Bartleby repository."
     ]
+  },
+  {
+    "skill": "handoff",
+    "purpose": "Trigger when the user wants to save the state of the work for a fresh agent, when a hook reports the handoff threshold, or when resuming from a handoff, and not for commit messages, pull request descriptions, or reports for people.",
+    "should_trigger": [
+      "Write a handoff so I can pick this up in a new session tomorrow.",
+      "I'm about to clear the context. Save where we are first.",
+      "Handoff threshold reached: Context window at 91%. Use the handoff skill now to write or update the handoff file, then continue the current task.",
+      "Resume from the handoff.",
+      "Continue where the last session left off."
+    ],
+    "should_not_trigger": [
+      "Write a pull request description for this branch.",
+      "Draft a commit message for these changes.",
+      "Summarize this week's work for my manager.",
+      "Add a CHANGELOG entry for version 1.2."
+    ]
   }
 ]
