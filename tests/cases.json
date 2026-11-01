@@ -91,5 +91,26 @@
       "Summarize this week's work for my manager.",
       "Add a CHANGELOG entry for version 1.2."
     ]
+  },
+  {
+    "skill": "rust-cli",
+    "purpose": "Trigger this project's Rust conventions whenever a task writes, changes, or reviews Rust code or a Cargo project, and not for Rust questions that write no code or for work in another language.",
+    "should_trigger": [
+      "Add a --no-ignore flag to the argument parser in src/cli.rs.",
+      "Write the lexer module for the Vim9 parser in Rust.",
+      "Review this Cargo.toml before I publish the crate.",
+      "Split this 600-line main.rs into modules.",
+      "Our error handling mixes anyhow and thiserror inconsistently. Fix it.",
+      "Set up the integration tests under tests/ for the ghostcode binary.",
+      "Port this Vim9 function to Rust.",
+      "Add a derive and a Display impl to the Kind enum."
+    ],
+    "should_not_trigger": [
+      "What does the question mark operator do in Rust?",
+      "Which is faster for this workload, Rust or Go?",
+      "Add a method to the Logger class in autoload/bartleby/logger.vim.",
+      "Write a Lua filter for Pandoc that rewrites table cells.",
+      "Explain why my Cargo build is slow, I am not changing any code."
+    ]
   }
 ]

@@ -11,6 +11,7 @@ These skills are my own and hold my personal preferences. Use, edit, or delete t
 | [`code-comments`](skills/code-comments/SKILL.md) | Rules for code comments in any language. Keeps comments short, because Claude tends to write long ones. |
 | [`github-markdown-style`](skills/github-markdown-style/SKILL.md) | Style guide for GitHub Markdown files such as README.md, based on _The Elements of Style_ by Strunk and White. |
 | [`handoff`](skills/handoff/SKILL.md) | Writes a handoff file that a fresh agent can resume from, by hand or from a hook when context or usage limits reach 90%. |
+| [`rust-cli`](skills/rust-cli/SKILL.md) | My conventions for a Rust command-line crate: layout, naming, errors, visibility, comments, and the test layout. |
 | [`token-efficient-execution`](skills/token-efficient-execution/SKILL.md) | Rules for multi-step work that use the fewest tokens, tool calls, and words that still give a correct, verified result. |
 | [`vim9script-plugin`](skills/vim9script-plugin/SKILL.md) | My conventions for Vim9script plugins: naming, layout, comments, logging, and tests. |
 

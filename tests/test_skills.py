@@ -33,6 +33,13 @@ class SkillRepositoryTests(unittest.TestCase):
             self.assertTrue(case["should_trigger"])
             self.assertTrue(case["should_not_trigger"])
 
+    def test_every_skill_has_evaluation_cases(self):
+        """A skill with no cases is never tested, and a case with no skill tests nothing."""
+        skills = {p.name for p in (ROOT / "skills").iterdir() if p.is_dir() and not p.name.startswith(".")}
+        cases = {case["skill"] for case in json.loads((ROOT / "tests" / "cases.json").read_text(encoding="utf-8"))}
+        self.assertEqual(skills - cases, set(), "skills with no evaluation cases")
+        self.assertEqual(cases - skills, set(), "evaluation cases naming no skill")
+
     def test_packager_creates_skill_root_in_zip(self):
         skill_dirs = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir() and (p / "SKILL.md").is_file())
         self.assertTrue(skill_dirs)
