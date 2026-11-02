@@ -1,0 +1,18 @@
+#!/bin/sh
+
+##############################################################################
+# prepare-commit-msg: add the Signed-off-by trailer that certifies the
+# Developer Certificate of Origin. Git has no configuration variable for
+# this and will not add one, so a hook is the only way to get it on every
+# commit. The trailer names the committer, which git var answers with.
+##############################################################################
+
+commit_msg="$1"
+
+sob=$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+
+git interpret-trailers \
+  --if-exists doNothing \
+  --trailer "$sob" \
+  --in-place \
+  "$commit_msg"
