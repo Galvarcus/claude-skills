@@ -32,6 +32,7 @@ Good code should explain itself. Before adding a comment, ask whether the code c
 * A comment inside a function or block explains the next line or lines of code and takes no identifier.
 * Use one space after the comment marker.
 * A file header block gets one blank line before and after it. It follows any line that must come first, such as a shebang or an encoding line.
+* **A comment block belongs to the item below it.** When adding a function, constant, type, or field directly above an existing one, anchor the insertion on the first line of that item's comment block, never on the line of the item itself. An insertion anchored on the item's own line lands between the block and what it documents, so the new item takes the comment of the old one and the old one is left with none. Read the context lines of the diff afterwards, not the inserted text alone: the fault is invisible in the inserted lines and plain in the lines around them.
 
 | Marker | Used in |
 | --- | --- |
