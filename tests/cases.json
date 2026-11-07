@@ -40,23 +40,6 @@
     ]
   },
   {
-    "skill": "token-efficient-execution",
-    "purpose": "Trigger lean execution for non-trivial, multi-step, or tool-assisted work and when the user asks for low-cost work, and not for trivial one-step requests.",
-    "should_trigger": [
-      "Find and fix the failing test in this repository.",
-      "Refactor compile.vim into smaller scripts and verify that the suite still passes.",
-      "Research how Pandoc handles table captions in LaTeX and summarize what you find.",
-      "Keep it cheap: rename the Logger alias across all scripts.",
-      "With as few tool calls as you can, list the files that import table.vim."
-    ],
-    "should_not_trigger": [
-      "What is 17 times 23?",
-      "Say hello.",
-      "Translate good morning into Spanish.",
-      "What is the capital of Peru?"
-    ]
-  },
-  {
     "skill": "vim9script-plugin",
     "purpose": "Trigger the Vim9script standards for Vim plugin and script work, alongside code-comments for a comment edit, and not for Neovim, other languages, or questions about using Vim.",
     "should_trigger": [

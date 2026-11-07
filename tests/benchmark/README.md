@@ -30,6 +30,8 @@ The runs themselves need Claude Code with the skill-creator plugin, because each
    python3 seed.py iteration-1 --skill token-efficient-execution --runs 3
    ```
 
+   `token-efficient-execution` is now the rules file `rules/token-efficiency.md`, which every session loads through an import in `CLAUDE.md`. Its evals keep the old name as their key. Give the rules to a run by naming the file in the prompt, and withhold them from a baseline run as the prompt withholds a skill.
+
 2. Ask Claude Code to run each seeded run as a subagent, with the run's `prompt.txt` as the prompt. The prompt names the skills the run may read and forbids the rest. Each run writes its final reply to `response.md`.
 
 3. For each finished run, save the subagent's duration as `timing.json` in its `run-<n>/` directory. For transcript checks, also save the path of the subagent's JSONL transcript as `transcript_path.txt` in the same directory.

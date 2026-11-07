@@ -1,10 +1,11 @@
----
-name: token-efficient-execution
-# prettier-ignore
-description: Spend the fewest tokens, tool calls, and words that still give a correct, complete, verified result. Use for every task with more than one step, even when the user does not mention cost, including code changes, debugging, refactoring, repository searches, multi-file edits, research, CI and build work, and any tool-assisted workflow, and whenever the user asks for concise, quick, cheap, or token-efficient work. Not for a one-step answer that needs no tools, such as arithmetic, a greeting, or a short fact.
----
-
 # Token-Efficient Execution
+
+`~/.claude/CLAUDE.md` imports this file, so these rules load in every session.
+
+They are a standing policy rather than a skill. The condition they apply to,
+a task of more than one step, holds before the first tool call and never
+stops holding, so no moment in a session reads as the moment to invoke a
+skill. A skill that is never invoked delivers nothing.
 
 Use the least context, tool calls, reasoning, and output that give a correct, complete, maintainable result. Cut waste, never substance. Waste is repeated reads, broad searches, speculative calls, narration, and unrequested work. Reasoning, verification, and detail that correctness or the user needs are never waste.
 

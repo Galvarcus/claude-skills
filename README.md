@@ -12,12 +12,27 @@ These skills are my own and hold my personal preferences. Use, edit, or delete t
 | [`github-markdown-style`](skills/github-markdown-style/SKILL.md) | Style guide for GitHub Markdown files such as README.md, based on _The Elements of Style_ by Strunk and White. |
 | [`handoff`](skills/handoff/SKILL.md) | Writes a handoff file that a fresh agent can resume from, by hand or from a hook when context or usage limits reach 90%. |
 | [`rust-cli`](skills/rust-cli/SKILL.md) | My conventions for a Rust command-line crate: layout, naming, errors, visibility, comments, and the test layout. |
-| [`token-efficient-execution`](skills/token-efficient-execution/SKILL.md) | Rules for multi-step work that use the fewest tokens, tool calls, and words that still give a correct, verified result. |
 | [`vim9script-plugin`](skills/vim9script-plugin/SKILL.md) | My conventions for Vim9script plugins: naming, layout, comments, logging, and tests. |
+
+## Rules files
+
+A rules file in `rules/` holds a policy that applies to every task. Claude loads it in every session, because `~/.claude/CLAUDE.md` imports it:
+
+```markdown
+@~/.claude/rules/token-efficiency.md
+```
+
+Install the rules files with `python3 tools/install.py --rules`, then add one import line per file.
+
+A policy belongs here rather than in a skill when the condition it applies to is always true. Claude invokes a skill at a moment it can recognize, such as a request to edit a `.vim` file. "Every task of more than one step" names no such moment, so the skill for it went uninvoked in 20 days of work while its description still cost tokens in every session.
+
+| Rules file | Purpose |
+| --- | --- |
+| [`token-efficiency`](rules/token-efficiency.md) | Use the fewest tokens, tool calls, and words that still give a correct, verified result. |
 
 ### Token savings
 
-A benchmark compared runs with and without `token-efficient-execution` on seven tasks for a Vim9script plugin, with three runs of each. Both configurations loaded the other three skills. Token counts are approximate means per run.
+A benchmark compared runs with and without the token-efficiency rules on seven tasks for a Vim9script plugin, with three runs of each. The rules were a skill at the time, and both configurations loaded the other three skills. Token counts are approximate means per run.
 
 | Task | Tokens with | Tokens without | Saved |
 | --- | --- | --- | --- |
@@ -30,7 +45,7 @@ A benchmark compared runs with and without `token-efficient-execution` on seven 
 | Final analysis | 720k | 990k | 28% |
 | All tasks | 14.9M total | 20.9M total | 29% |
 
-The checks passed at 96.7% with the skill and 94.8% without it. See [the Waypoint benchmark plan](tests/benchmark/waypoint-plan.md) for the method and full results.
+The checks passed at 96.7% with the rules and 94.8% without them. Remove the import line from `CLAUDE.md` to measure the baseline arm again. See [the Waypoint benchmark plan](tests/benchmark/waypoint-plan.md) for the method and full results.
 
 ### Automatic handoffs
 
@@ -69,6 +84,8 @@ claude-skills/
 │       ├── references/       # optional
 │       ├── scripts/          # optional
 │       └── assets/           # optional
+├── rules/
+│   └── example-policy.md
 ├── tests/
 │   └── fixtures/
 ├── tools/
@@ -93,6 +110,7 @@ python3 tools/validate.py
 python3 tools/test.py
 python3 tools/package.py --all
 python3 tools/install.py --all --target personal
+python3 tools/install.py --rules
 ```
 
 Install one skill to the current repository instead:
@@ -101,7 +119,7 @@ Install one skill to the current repository instead:
 python3 tools/install.py markdown-style --target project
 ```
 
-The personal target installs to `~/.claude/skills/`; the project target installs to `./.claude/skills/` under the current working directory. The installer refuses to overwrite an existing skill unless `--force` is supplied.
+The personal target installs to `~/.claude/`; the project target installs to `./.claude/` under the current working directory. Skills land in `skills/` and rules files in `rules/`. The installer refuses to overwrite anything already there unless `--force` is supplied. `--all` installs both; `--rules` installs the rules files alone.
 
 Create a skill scaffold:
 
