@@ -1,12 +1,5 @@
 # Token-Efficient Execution
 
-`~/.claude/CLAUDE.md` imports this file, so these rules load in every session.
-
-They are a standing policy rather than a skill. The condition they apply to,
-a task of more than one step, holds before the first tool call and never
-stops holding, so no moment in a session reads as the moment to invoke a
-skill. A skill that is never invoked delivers nothing.
-
 Use the least context, tool calls, reasoning, and output that give a correct, complete, maintainable result. Cut waste, never substance. Waste is repeated reads, broad searches, speculative calls, narration, and unrequested work. Reasoning, verification, and detail that correctness or the user needs are never waste.
 
 ## Priorities
@@ -24,7 +17,7 @@ Classify the task, then do that much work:
 - **Research**: use the fewest authoritative sources.
 - **High-risk**: spend extra on verification.
 
-Get the minimum information a correct result needs, then stop. Never call a tool only because it is available.
+Never call a tool only because it is available.
 
 ## Context and Tools
 
@@ -47,11 +40,9 @@ Use the simplest valid path, at the depth the problem needs. Skip alternatives t
 
 ## Verification
 
-| Risk | Examples | Verification |
-|---|---|---|
-| Low | formatting, docs, obvious text edits | none or minimal |
-| Medium | localized code, config, API usage | the smallest relevant test or check |
-| High | security, migrations, build system, public API, complex behavior | targeted checks, widened only when justified |
+- **Low** (formatting, docs, obvious text edits): none or minimal.
+- **Medium** (localized code, config, API usage): the smallest relevant test or check.
+- **High** (security, migrations, build system, public API, complex behavior): targeted checks, widened only when justified.
 
 One authoritative check usually suffices. Add another only when the risk is high, sources disagree, or the first check is inconclusive.
 
@@ -69,6 +60,4 @@ One authoritative check usually suffices. Add another only when the risk is high
 
 ## Stop
 
-Stop when the outcome is achieved, the result is consistent, and verification passed. More searching, refactoring, testing, or explaining only because more is possible is waste.
-
-**Default: do less, but exactly enough.**
+**Default: do less, but exactly enough.** Stop when the outcome is achieved, the result is consistent, and verification passed.
