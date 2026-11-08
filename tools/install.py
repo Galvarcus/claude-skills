@@ -30,6 +30,15 @@ def place(source: Path, destination: Path, force: bool, dry_run: bool) -> None:
     print(f"Installed {source.name} -> {destination}")
 
 
+def stale(directory: Path, names: set[str], want_dirs: bool) -> list[Path]:
+    """List installs under one directory that no source name matches."""
+    if not directory.is_dir():
+        return []
+    return [path for path in sorted(directory.iterdir())
+            if not path.name.startswith(".") and path.name not in names
+            and path.is_dir() == want_dirs]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     selection = parser.add_mutually_exclusive_group(required=True)
@@ -39,6 +48,8 @@ def main() -> int:
     parser.add_argument("--target", choices=("personal", "project"), default="personal",
                         help="personal: ~/.claude; project: ./.claude (default: personal)")
     parser.add_argument("--force", action="store_true", help="replace existing installed skills and rules")
+    parser.add_argument("--prune", action="store_true",
+                        help="remove installed skills and rules files that the source no longer holds")
     parser.add_argument("--dry-run", action="store_true", help="show actions without copying")
     args = parser.parse_args()
 
@@ -81,6 +92,20 @@ def main() -> int:
 
     for source, destination in planned:
         place(source, destination, args.force, args.dry_run)
+
+    leftovers = []
+    if args.all:
+        leftovers += stale(claude_root / "skills", {source.name for source in selected}, True)
+    if args.all or args.rules:
+        leftovers += stale(claude_root / "rules", {source.name for source in rules}, False)
+    for path in leftovers:
+        if not args.prune:
+            print(f"WARNING: not in the source: {path} (use --prune to remove)")
+        elif args.dry_run:
+            print(f"Would remove {path}")
+        else:
+            shutil.rmtree(path) if path.is_dir() else path.unlink()
+            print(f"Removed {path}")
     return 0
 
 
