@@ -9,6 +9,7 @@ These skills are my own and hold my personal preferences. Use, edit, or delete t
 | Skill | Purpose |
 | --- | --- |
 | [`code-comments`](skills/code-comments/SKILL.md) | Rules for code comments in any language. Keeps comments short, because Claude tends to write long ones. |
+| [`design-rounds`](skills/design-rounds/SKILL.md) | Asks the questions of a technical design in rounds, each with a recommended answer, inside a brainstorming session. |
 | [`github-markdown-style`](skills/github-markdown-style/SKILL.md) | Style guide for GitHub Markdown files such as README.md, based on _The Elements of Style_ by Strunk and White. |
 | [`handoff`](skills/handoff/SKILL.md) | Writes a handoff file that a fresh agent can resume from, by hand or from a hook when context or usage limits reach 90%. |
 | [`rust-cli`](skills/rust-cli/SKILL.md) | My conventions for a Rust command-line crate: layout, naming, errors, visibility, comments, and the test layout. |

@@ -95,5 +95,23 @@
       "Write a Lua filter for Pandoc that rewrites table cells.",
       "Explain why my Cargo build is slow, I am not changing any code."
     ]
+  },
+  {
+    "skill": "design-rounds",
+    "purpose": "Trigger the round format for the questions of a technical design whose facts the project can answer, and not for a new idea with no facts yet or for a task that is clear from the request.",
+    "should_trigger": [
+      "Start the brainstorming session for how the analyzer should treat member access.",
+      "Grill me on this cache design before we write the plan.",
+      "Interview me about the design of the new config file format for GhostCode.",
+      "Brainstorm how the resolver should handle g: variables; measure what you need first.",
+      "Before you write code, ask me every design question about changing the quickfix output."
+    ],
+    "should_not_trigger": [
+      "I want to build something that helps writers keep track of characters.",
+      "Rename this function and update its callers.",
+      "Explain how the resolver credits a member access.",
+      "Write a handoff so I can continue tomorrow.",
+      "Fix the failing parity test."
+    ]
   }
 ]
