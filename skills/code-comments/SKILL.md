@@ -1,6 +1,6 @@
 ---
 name: "code-comments"
-description: Write, edit, or review comments in any file that can hold them, using this project's comment standards. Covers source code in any language, shell and Vim scripts, Python, Lua, YAML and CI workflows, TOML, LaTeX, CSS, HTML, and Markdown. The rules state why, not what; forbid inline comments; keep blocks to 78 columns; mark blocks with identifiers such as FUNCTION: and TODO:; and link GitHub issues on REFERENCE: lines. Use whenever writing or changing code, configuration, or templates, even when the task is not about comments, and when reviewing a diff that adds or changes comments. A language skill, such as vim9script-plugin, adds its comment marker and header fields on top of these rules.
+description: Write, edit, or review comments in any file that can hold them, using this project's comment standards. Covers source code in any language, shell and Vim scripts, Python, Lua, YAML and CI workflows, TOML, LaTeX, CSS, HTML, and Markdown. The rules state why, not what; forbid inline comments; keep blocks to 78 columns; mark blocks with identifiers such as "FUNCTION:" and "TODO:"; and link GitHub issues on "REFERENCE:" lines. Use whenever writing or changing code, configuration, or templates, even when the task is not about comments, and when reviewing a diff that adds or changes comments. A language skill, such as vim9script-plugin, adds its comment marker and header fields on top of these rules.
 ---
 
 # Code Comments
